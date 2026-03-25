@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caravan Consulting – Media Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #F5F0E8;
+    --sand-dark: #EAE3D5;
+    --ink: #1C1A16;
+    --ink-light: #4A4640;
+    --rust: #B5461A;
+    --rust-light: #D4612A;
+    --cream: #FDFAF4;
+    --border: rgba(28,26,22,0.12);
+    --font-serif: 'Cormorant Garamond', Georgia, serif;
+    --font-sans: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(253,250,244,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 5%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--rust); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 120px 5% 80px;
+    background: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 45%;
+    height: 100%;
+    background: var(--sand);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+  }
+
+  .hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 2rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rust);
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--ink-light);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+
+  .hero-cta:hover { background: var(--rust); }
+
+  .hero-domain {
+    position: absolute;
+    bottom: 3rem;
+    right: 5%;
+    font-family: var(--font-serif);
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    letter-spacing: 0.05em;
+    z-index: 1;
+  }
+
+  /* SECTION BASE */
+  section { padding: 100px 5%; }
+
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+
+  .section-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--ink);
+  }
+
+  .section-heading em {
+    font-style: italic;
+  }
+
+  /* ABOUT */
+  .about {
+    background: var(--sand);
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-text {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    line-height: 1.85;
+  }
+
+  .about-text p + p { margin-top: 1.2rem; }
+
+  .about-stat-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 3rem;
+  }
+
+  .stat-box {
+    padding: 1.5rem;
+    background: var(--cream);
+    border-left: 3px solid var(--rust);
+  }
+
+  .stat-num {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--rust);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+    text-transform: uppercase;
+  }
+
+  /* SERVICES */
+  .services {
+    background: var(--cream);
+  }
+
+  .services-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .services-header {
+    max-width: 600px;
+    margin-bottom: 4rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--border);
+  }
+
+  .service-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+  }
+
+  .service-num {
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--sand-dark);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-title {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .service-desc {
+    font-size: 0.92rem;
+    color: var(--ink-light);
+    line-height: 1.75;
+  }
+
+  .service-card:hover {
+    background: var(--sand);
+  }
+
+  /* TEAM */
+  .team {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .team .section-label { color: #B5816A; }
+  .team .section-heading { color: var(--cream); }
+
+  .team-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    background: rgba(255,255,255,0.08);
+    margin-top: 4rem;
+  }
+
+  .team-card {
+    background: var(--ink);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .team-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 2.5rem;
+    width: 40px;
+    height: 2px;
+    background: var(--rust);
+  }
+
+  .team-name {
+    font-family: var(--font-serif);
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .team-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--rust-light);
+    margin-bottom: 1.8rem;
+  }
+
+  .team-bio {
+    font-size: 0.95rem;
+    color: rgba(253,250,244,0.7);
+    line-height: 1.85;
+  }
+
+  .team-bio p + p { margin-top: 1rem; }
+
+  .team-past {
+    margin-top: 1.8rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.78rem;
+    color: rgba(253,250,244,0.4);
+    letter-spacing: 0.06em;
+  }
+
+  .team-past strong {
+    color: rgba(253,250,244,0.6);
+    font-weight: 400;
+    display: block;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* CONTACT */
+  .contact {
+    background: var(--sand);
+  }
+
+  .contact-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .contact-inner .section-heading {
+    margin-bottom: 0.75rem;
+  }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--ink-light);
+    margin-bottom: 3.5rem;
+  }
+
+  .contact-form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .form-field label {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    font-weight: 400;
+  }
+
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    font-weight: 300;
+    padding: 12px 16px;
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus {
+    border-color: var(--rust);
+  }
+
+  .form-field textarea { resize: vertical; min-height: 130px; }
+
+  .form-submit {
+    margin-top: 0.5rem;
+    padding: 14px 40px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-start;
+  }
+
+  .form-submit:hover { background: var(--rust); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    padding: 3rem 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--cream);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-copy {
+    font-size: 0.78rem;
+    color: rgba(253,250,244,0.35);
+    letter-spacing: 0.04em;
+  }
+
+  .footer-domain {
+    font-size: 0.78rem;
+    color: rgba(253,250,244,0.5);
+    letter-spacing: 0.04em;
+  }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero::before { display: none; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .services-grid { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .about-stat-row { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Caravan Consulting</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Media Consulting</p>
+    <h1>Strategy that <em>moves</em><br>audiences forward.</h1>
+    <p class="hero-sub">Caravan Consulting partners with media companies to grow audiences, build operations, and unlock revenue — from strategy to execution.</p>
+    <a href="#contact" class="hero-cta">Work With Us</a>
+  </div>
+  <span class="hero-domain">thecaravanconsult.com</span>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <p class="section-label">About Us</p>
+      <h2 class="section-heading">Built by people who've <em>done the work.</em></h2>
+    </div>
+    <div>
+      <div class="about-text">
+        <p>Caravan Consulting is a fractional media consulting firm founded by two veterans of digital media, broadcasting, and audience development. We work with media companies — large and small — to solve the problems that matter: growing audiences, streamlining operations, and building sustainable revenue.</p>
+        <p>What sets us apart is our complementary expertise. We bring together the strategic and creative intelligence of audience growth with the operational rigor of someone who actually runs things. We don't just advise — we build, execute, and deliver.</p>
+      </div>
+      <div class="about-stat-row">
+        <div class="stat-box">
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Years in media</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">6×</div>
+          <div class="stat-label">SEO growth achieved</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">$700K</div>
+          <div class="stat-label">Direct sales in year one</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">112M+</div>
+          <div class="stat-label">Audience reached</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="services-header">
+      <p class="section-label">What We Do</p>
+      <h2 class="section-heading">Fractional expertise.<br><em>Full-scale impact.</em></h2>
+      <p style="color: var(--ink-light); font-size: 0.97rem; line-height: 1.8;">We embed as strategic partners — not vendors — offering senior-level guidance without the full-time overhead.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <div class="service-title">Audience Development</div>
+        <p class="service-desc">Data-driven strategies to grow traffic, engagement, and loyal audiences across digital, social, search, newsletter, and video platforms. We build the playbook and the team to run it.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <div class="service-title">Revenue & Monetization</div>
+        <p class="service-desc">From influencer and creator partnerships to branded content, affiliate, and subscription models — we identify and activate the revenue streams that match your audience and brand.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <div class="service-title">Operations & Strategy</div>
+        <p class="service-desc">Organizational design, process optimization, vendor management, and cross-functional execution. We bring structure to ambitious initiatives and accountability to complex teams.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="team-inner">
+    <p class="section-label">The Team</p>
+    <h2 class="section-heading">Two founders.<br><em>One point of view.</em></h2>
+    <div class="team-grid">
+
+      <!-- TING -->
+      <div class="team-card">
+        <div class="team-name">Ting Wang</div>
+        <div class="team-title">Co-Founder · Fractional Audience Growth Strategist</div>
+        <div class="team-bio">
+          <p>Ting is a digital media and TV broadcast executive with a track record of building high-performing teams and driving measurable audience growth across digital, social, and linear platforms. He brings deep expertise in leveraging data analysis to fuel traffic, revenue, and reach — on and off network.</p>
+          <p>At The Arena Group — overseeing Sports Illustrated, TheStreet, Men's Journal, and Parade — he orchestrated 6× SEO growth, 3× social referral traffic, and launched a creator network that drove seven figures in sponsorship revenue. His work across major media brands also includes leading digital content transformation and omnichannel monetization strategies that generated $700K in direct sales within the first year of execution.</p>
+          <p>Ting is currently focused on AI-assisted marketing and content generation, with an emphasis on effective AEO strategies for the next era of search.</p>
+        </div>
+        <div class="team-past">
+          <strong>Previously</strong>
+          SVP Audience Development, The Arena Group · Head of Audience Development, Yahoo / Verizon Media · Executive Producer, Yahoo Finance · NYU
+        </div>
+      </div>
+
+      <!-- CAROLINE -->
+      <div class="team-card">
+        <div class="team-name">Caroline Sansone</div>
+        <div class="team-title">Co-Founder · Operations & Business Development</div>
+        <div class="team-bio">
+          <p>Caroline is a business development and operations leader with 12+ years of experience driving partnerships, revenue growth, and operational excellence across media, e-commerce, and small business. She is the structural backbone of every initiative she touches — skilled at turning strategy into systems that actually scale.</p>
+          <p>At The Arena Group, Caroline founded and scaled the Creator Network, brokered monetization partnerships that drove 3× newsletter revenue YoY, and served as operations head for a multi-brand audience development team spanning Sports Illustrated, TheStreet, Men's Journal, and Parade. Her broader media work includes overseeing digital relaunches that produced 10× audience growth in two months and $500K+ in executed branded content obligations.</p>
+          <p>Caroline also co-owns The Cheese Shops in Cold Spring, NY — bringing hands-on small business experience in vendor relations, events, and e-commerce to every client engagement.</p>
+        </div>
+        <div class="team-past">
+          <strong>Previously</strong>
+          Sr. Director, The Arena Group · Sr. Project Manager, Yahoo Finance / Verizon Media · Supervising Producer, CNBC · Bloomberg LP
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-heading">Let's talk about<br><em>your audience.</em></h2>
+    <p class="contact-sub">Tell us a bit about what you're working on. We'll follow up within 48 hours.</p>
+
+    <form class="contact-form" action="mailto:caroline.sansone@gmail.com" method="POST" enctype="text/plain">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="First Name" placeholder="Your first name" required>
+        </div>
+        <div class="form-field">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="Last Name" placeholder="Your last name">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="Email" placeholder="your@email.com" required>
+        </div>
+        <div class="form-field">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="Company" placeholder="Your company">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="interest">Area of Interest</label>
+        <select id="interest" name="Interest">
+          <option value="">Select one…</option>
+          <option>Audience Development</option>
+          <option>Revenue & Monetization</option>
+          <option>Operations & Strategy</option>
+          <option>Not sure yet</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="message">Tell Us About Your Project</label>
+        <textarea id="message" name="Message" placeholder="What are you working on? What challenges are you facing?"></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Caravan Consulting</div>
+  <div class="footer-copy">© 2025 Caravan Consulting LLC. All rights reserved.</div>
+  <div class="footer-domain">thecaravanconsult.com</div>
+</footer>
+
+</body>
+</html>
